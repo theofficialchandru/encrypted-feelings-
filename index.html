@@ -1,8 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Encrypted Feelings 💌</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       background-color: #1e1e2f;
@@ -15,11 +17,13 @@
       min-height: 100vh;
       text-align: center;
       padding: 20px;
+      box-sizing: border-box;
     }
 
     h1 {
       color: #ff6f91;
       animation: glow 1.5s infinite alternate;
+      font-size: 1.8rem;
     }
 
     @keyframes glow {
@@ -32,11 +36,13 @@
       padding: 10px 20px;
       border: none;
       border-radius: 8px;
-      font-size: 16px;
+      font-size: 1rem;
+      max-width: 100%;
     }
 
     input {
-      width: 200px;
+      width: 80%;
+      max-width: 300px;
     }
 
     button {
@@ -70,11 +76,11 @@
       margin-top: 30px;
       display: none;
       background: #2c2c3f;
-      padding: 25px;
+      padding: 20px;
       border-radius: 15px;
       border: 1px solid #ff6f91;
       animation: fadeIn 1.5s ease-in-out;
-      max-width: 600px;
+      max-width: 90%;
       box-shadow: 0 0 10px rgba(255, 111, 145, 0.4);
     }
 
@@ -87,14 +93,15 @@
       text-align: left;
       white-space: pre-wrap;
       line-height: 1.6;
-      font-size: 16px;
+      font-size: 1rem;
       color: #f9cfdc;
     }
 
     .footer {
       margin-top: 40px;
-      font-size: 12px;
+      font-size: 0.8rem;
       color: #999;
+      text-align: center;
     }
 
     #nextPageBtn {
@@ -104,7 +111,7 @@
       border: none;
       border-radius: 12px;
       padding: 12px 25px;
-      font-size: 16px;
+      font-size: 1rem;
       cursor: pointer;
       box-shadow: 0 4px 12px rgba(255, 111, 145, 0.3);
     }
@@ -117,6 +124,25 @@
     input.error {
       border: 2px solid #ff6f91;
     }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      #typedText {
+        font-size: 0.95rem;
+      }
+
+      button, input {
+        font-size: 1rem;
+        padding: 10px;
+      }
+
+      #message {
+        padding: 15px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -124,9 +150,11 @@
   <h1>🔐 Encrypted Feelings</h1>
   <p>A message is hidden here, waiting to be unlocked...</p>
 
-  <input type="password" id="passInput" placeholder="Enter password">
-  <br>
-  <button onclick="checkPassword()">Unlock</button>
+  <div id="unlockContainer">
+    <input type="password" id="passInput" placeholder="Enter password">
+    <br>
+    <button onclick="checkPassword()">Unlock</button>
+  </div>
 
   <div id="heartExplosion">💖</div>
 
@@ -150,9 +178,11 @@
       const messageBox = document.getElementById("message");
       const heart = document.getElementById("heartExplosion");
       const nextBtn = document.getElementById("nextPageContainer");
+      const unlockContainer = document.getElementById("unlockContainer");
 
       if (input === "unlock") {
         inputField.classList.remove("error");
+        unlockContainer.style.display = "none";
         heart.style.animation = "explode 1.2s ease-out forwards";
 
         setTimeout(() => {
@@ -173,7 +203,7 @@ I know we’ve never met or spoken. But sometimes, even a quiet presence can ins
 
 This page is a small reflection of that feeling — created not to pressure, but to say… I admire you. I’d love to get to know you when you're ready.
 
-– See next `;
+– Chandru 💻❤️ `;
       const typedText = document.getElementById("typedText");
       let index = 0;
 
@@ -187,8 +217,6 @@ This page is a small reflection of that feeling — created not to pressure, but
 
       typeNextChar();
     }
-
-
   </script>
 
 </body>
